@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es2017",
+    "module": "commonJS",
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "strict": true
+  },
+  "include": ["src", "src/custom.d.ts", "server.js"],
+  "extends": "./tsconfig.paths.json"
+}
