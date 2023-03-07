@@ -1,37 +1,27 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
+    plugins: [
+      new TsconfigPathsPlugin({}),
+    ],
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
         },
       },
       {
-        test: /\.(ts|tsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'ts-loader',
-        },
-      },
-      {
         test: /\.(jpe?g|png|gif|webp|eot|ttf|woff2?)$/i,
         type: 'asset',
-      },
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.svg$/,
@@ -67,7 +57,7 @@ module.exports = {
     }),
     new webpack.ProvidePlugin({
       React: 'react',
-    }),
+    })
   ],
   performance: { hints: false },
 };
